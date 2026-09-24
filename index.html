@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judges Study Guide</title>
+<meta name="description" content="A study guide to the Book of Judges: history, archaeology, structure, chapter-by-chapter notes, themes, and discussion questions.">
+<meta name="theme-color" content="#7a3b1d">
+<style>
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f3ede3;
+  --text: #2a241e;
+  --muted: #6b6157;
+  --border: #e3d9ca;
+  --accent: #7a3b1d;
+  --accent-soft: #f4e4d8;
+  --gold: #a87414;
+  --ok: #2f6b3a;   --ok-bg: #e3f1e5;
+  --prob: #5f6620; --prob-bg: #eceed6;
+  --deb: #8a5a0b;  --deb-bg: #f8ecd4;
+  --unk: #6b6157;  --unk-bg: #ece8e2;
+  --shadow: 0 1px 2px rgba(60,40,20,.06), 0 4px 16px rgba(60,40,20,.06);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17140f; --surface: #211c16; --surface-2: #2a241c; --text: #ece4d8; --muted: #b0a494;
+    --border: #3a3226; --accent: #e09a6b; --accent-soft: #3a2619; --gold: #d9a53c;
+    --ok: #8fd19c; --ok-bg: #1f3324; --prob: #c4cc84; --prob-bg: #2c2f18;
+    --deb: #e8bb66; --deb-bg: #3a2c12; --unk: #b0a494; --unk-bg: #2e2923;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17140f; --surface: #211c16; --surface-2: #2a241c; --text: #ece4d8; --muted: #b0a494;
+  --border: #3a3226; --accent: #e09a6b; --accent-soft: #3a2619; --gold: #d9a53c;
+  --ok: #8fd19c; --ok-bg: #1f3324; --prob: #c4cc84; --prob-bg: #2c2f18;
+  --deb: #e8bb66; --deb-bg: #3a2c12; --unk: #b0a494; --unk-bg: #2e2923;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: 17px; line-height: 1.65;
+}
+a { color: var(--accent); }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.25; font-weight: 600; }
+h2 { font-size: 1.75rem; margin: 0 0 .25rem; }
+h3 { font-size: 1.2rem; margin: 1.6rem 0 .4rem; }
+h4 { font-size: 1.02rem; margin: 1.1rem 0 .3rem; }
+p { margin: .6rem 0; }
+ul, ol { padding-left: 1.3rem; }
+li { margin: .25rem 0; }
+.ref { color: var(--muted); font-size: .88em; white-space: nowrap; }
+small, .muted { color: var(--muted); }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: .5rem;
+  padding: .55rem 16px; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+}
+.topbar .brand { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--text); flex: 1; }
+.iconbtn {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 10px;
+  min-width: 40px; height: 40px; padding: 0 .7rem; font-size: .9rem; cursor: pointer; font-family: var(--sans);
+}
+.iconbtn:hover { border-color: var(--accent); }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 1fr; max-width: 1180px; margin: 0 auto; }
+@media (min-width: 1000px) { .layout { grid-template-columns: 260px 1fr; gap: 2rem; padding: 0 24px; } #menuBtn { display: none; } }
+nav.toc {
+  position: fixed; inset: 0 30% 0 0; max-width: 320px; z-index: 40; background: var(--surface);
+  border-right: 1px solid var(--border); padding: 1rem 1rem 3rem; overflow-y: auto;
+  transform: translateX(-102%); transition: transform .2s ease; box-shadow: var(--shadow);
+}
+nav.toc.open { transform: none; }
+.scrim { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 35; display: none; }
+.scrim.show { display: block; }
+@media (min-width: 1000px) {
+  nav.toc { position: sticky; top: 64px; height: calc(100vh - 72px); transform: none; box-shadow: none; border: 0; background: transparent; padding: 1.5rem 0 3rem; max-width: none; inset: auto; }
+  .scrim { display: none !important; }
+}
+nav.toc h4 { margin: .2rem 0 .6rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-family: var(--sans); }
+nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+nav.toc li { margin: 0; }
+nav.toc a { display: block; padding: .35rem .6rem; border-radius: 8px; text-decoration: none; color: var(--text); font-size: .93rem; }
+nav.toc a:hover, nav.toc a.active { background: var(--accent-soft); color: var(--accent); }
+
+main { padding: 0 16px 4rem; min-width: 0; }
+
+/* Hero */
+.hero { padding: 2.2rem 0 1.4rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+.hero .kicker { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.hero h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); margin: .3rem 0 .4rem; }
+.hero .lede { font-family: var(--serif); font-size: 1.2rem; color: var(--muted); max-width: 44rem; }
+.keyverse {
+  margin: 1.2rem 0 0; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: var(--surface);
+  border-radius: 0 12px 12px 0; font-family: var(--serif); font-size: 1.12rem; box-shadow: var(--shadow);
+}
+.keyverse cite { display: block; font-style: normal; font-family: var(--sans); font-size: .85rem; color: var(--muted); margin-top: .3rem; }
+
+section.block { padding: 2rem 0 1rem; border-bottom: 1px solid var(--border); }
+section.block > .sub { color: var(--muted); margin: 0 0 1rem; }
+
+/* Cards & grids */
+.grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.1rem; box-shadow: var(--shadow); }
+.card h4 { margin-top: 0; }
+.stat .label { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.stat .value { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; }
+.callout { background: var(--accent-soft); border-radius: 12px; padding: .9rem 1.1rem; margin: 1rem 0; }
+.callout strong:first-child { color: var(--accent); }
+
+/* Tables */
+.tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); margin: 1rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+th, td { text-align: left; padding: .55rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.minor td { color: var(--muted); }
+
+/* Evidence badges */
+.badge { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 999px; vertical-align: middle; }
+.b-ok { color: var(--ok); background: var(--ok-bg); }
+.b-prob { color: var(--prob); background: var(--prob-bg); }
+.b-deb { color: var(--deb); background: var(--deb-bg); }
+.b-unk { color: var(--unk); background: var(--unk-bg); }
+.evidence { display: grid; gap: .8rem; }
+.evidence .card h4 { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: .6rem 0 1rem; font-size: .9rem; }
+
+/* Chapter accordions */
+.toolbar { display: flex; gap: .5rem; flex-wrap: wrap; margin: .5rem 0 1rem; }
+details.ch { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin: .6rem 0; box-shadow: var(--shadow); }
+details.ch > summary {
+  cursor: pointer; list-style: none; padding: .85rem 1.1rem; display: flex; gap: .8rem; align-items: baseline;
+}
+details.ch > summary::-webkit-details-marker { display: none; }
+details.ch > summary .n { font-family: var(--serif); font-weight: 700; color: var(--accent); min-width: 2.2rem; font-size: 1.15rem; }
+details.ch > summary .t { font-weight: 600; flex: 1; }
+details.ch > summary .chev { color: var(--muted); transition: transform .15s; }
+details.ch[open] > summary .chev { transform: rotate(90deg); }
+details.ch .body { padding: 0 1.1rem 1rem; border-top: 1px solid var(--border); }
+.part-label { margin: 1.6rem 0 .3rem; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.qs { background: var(--surface-2); border-radius: 10px; padding: .6rem 1rem .6rem 2rem; }
+textarea.note {
+  width: 100%; min-height: 80px; margin-top: .4rem; padding: .6rem .7rem; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font: inherit; font-size: .95rem; resize: vertical;
+}
+.notelabel { font-size: .82rem; font-weight: 600; color: var(--muted); margin-top: 1rem; display: block; }
+
+/* Cycle diagram */
+.diagram { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 760px) { .diagram { grid-template-columns: 340px 1fr; } }
+.diagram svg { width: 100%; max-width: 340px; height: auto; margin: 0 auto; display: block; }
+.svg-node { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.svg-label { fill: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 700; text-anchor: middle; }
+.svg-sub { fill: var(--muted); font-family: var(--sans); font-size: 10.5px; text-anchor: middle; }
+.svg-arc { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.svg-center { fill: var(--accent); font-family: var(--serif); font-size: 14px; font-weight: 700; text-anchor: middle; }
+
+/* Spiral */
+.spiral { display: grid; gap: .4rem; }
+.spiral .row { display: grid; grid-template-columns: 7.5rem 1fr; gap: .8rem; align-items: center; font-size: .92rem; }
+.spiral .bar { height: 10px; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--gold)); }
+
+/* Verses */
+blockquote.v { margin: .8rem 0; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; font-family: var(--serif); }
+blockquote.v cite { display: block; font-family: var(--sans); font-style: normal; font-size: .85rem; color: var(--muted); margin-top: .3rem; }
+
+.totop { position: fixed; right: 16px; bottom: 16px; z-index: 20; }
+footer { padding: 2rem 16px 3rem; color: var(--muted); font-size: .88rem; text-align: center; }
+
+@media print {
+  .topbar, nav.toc, .toolbar, .totop, textarea.note, .notelabel, .scrim { display: none !important; }
+  .layout { display: block; }
+  details.ch { box-shadow: none; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="iconbtn" id="menuBtn" aria-label="Open contents" aria-controls="toc" aria-expanded="false">☰</button>
+  <a class="brand" href="#top">Judges · Study Guide</a>
+  <button class="iconbtn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+</header>
+<div class="scrim" id="scrim"></div>
+
+<div class="layout" id="top">
+<nav class="toc" id="toc" aria-label="Contents">
+  <h4>Contents</h4>
+  <ol>
+    <li><a href="#glance">1. At a glance</a></li>
+    <li><a href="#author">2. Title, author &amp; date</a></li>
+    <li><a href="#setting">3. Historical setting</a></li>
+    <li><a href="#chronology">4. Chronology</a></li>
+    <li><a href="#evidence">5. What can be proven?</a></li>
+    <li><a href="#structure">6. Structure of the book</a></li>
+    <li><a href="#cycle">7. The cycle &amp; the spiral</a></li>
+    <li><a href="#judges">8. The twelve judges</a></li>
+    <li><a href="#chapters">9. Chapter-by-chapter guide</a></li>
+    <li><a href="#themes">10. Major themes</a></li>
+    <li><a href="#hard">11. Hard passages</a></li>
+    <li><a href="#terms">12. Key terms</a></li>
+    <li><a href="#places">13. Places &amp; peoples</a></li>
+    <li><a href="#christ">14. Judges &amp; the whole Bible</a></li>
+    <li><a href="#memory">15. Memory verses</a></li>
+    <li><a href="#application">16. Discussion &amp; application</a></li>
+    <li><a href="#sources">17. Sources &amp; further reading</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="kicker">Old Testament · Former Prophets · 21 chapters</div>
+  <h1>The Book of Judges</h1>
+  <p class="lede">Israel between Joshua and the kings: about three centuries of forgetting God, falling apart, crying out, and being rescued again by flawed deliverers he raised up.</p>
+  <div class="keyverse">“In those days there was no king in Israel: every man did that which was right in his own eyes.”
+    <cite>Judges 21:25 (KJV); also 17:6. The shorter form “there was no king in Israel” appears in 18:1 and 19:1</cite></div>
+</div>
+
+<!-- 1 GLANCE -->
+<section class="block" id="glance">
+  <h2>1. At a glance</h2>
+  <p class="sub">The key facts for quick reference during class.</p>
+  <div class="grid">
+    <div class="card stat"><div class="label">Hebrew title</div><div class="value">Shophetim (שֹׁפְטִים)</div><small>“Judges”: leaders and deliverers</small></div>
+    <div class="card stat"><div class="label">Period covered</div><div class="value">Joshua’s death → just before Samuel</div><small>Roughly 1380–1050 BC (early date) or 1200–1050 BC (late date)</small></div>
+    <div class="card stat"><div class="label">Archaeological age</div><div class="value">Late Bronze → Iron Age I</div><small>c. 1200–1000 BC for the bulk of the story world</small></div>
+    <div class="card stat"><div class="label">Author</div><div class="value">Not named</div><small>Jewish tradition: Samuel (Talmud, Bava Batra 14b)</small></div>
+    <div class="card stat"><div class="label">Judges named</div><div class="value">12 (+ Abimelech)</div><small>6 “major” with stories, 6 “minor” with short notes</small></div>
+    <div class="card stat"><div class="label">Big idea</div><div class="value">Without faithfulness to God, God’s people become like the Canaanites.</div></div>
+  </div>
+
+  <h3>Where Judges sits</h3>
+  <p><strong>Before:</strong> Joshua. The land is conquered in broad strokes, but much of it is still to be taken (Josh 13:1). Joshua’s farewell says “choose you this day whom ye will serve” (Josh 24:15). <strong>After:</strong> Ruth (set “in the days when the judges ruled,” Ruth 1:1), then 1 Samuel, where Eli and Samuel are the last judges and Israel asks for a king.</p>
+  <div class="callout"><strong>Link from Joshua:</strong> Judges 2:6–10 deliberately repeats Joshua 24:28–31, the death and burial of Joshua. Then comes the shock: “there arose another generation after them, which knew not the LORD” (2:10). Joshua ends with a promise. Judges shows what happened to it.</div>
+</section>
+
+<!-- 2 AUTHOR -->
+<section class="block" id="author">
+  <h2>2. Title, author &amp; date of writing</h2>
+  <p class="sub">What the text itself tells us, and where scholars disagree.</p>
+
+  <h3>What “judge” means</h3>
+  <p>The Hebrew <em>shophet</em> means more than a courtroom judge. It covers <strong>governing, bringing justice, and military rescue</strong>. Most of the judges in this book are <em>deliverers</em> (Hebrew <em>moshia‘</em>, 3:9, 3:15) whom God raises up in a crisis. Deborah is the only one shown actually settling disputes (4:4–5). No judge rules all Israel, and none founds a dynasty. Abimelech tries to, and it ends in disaster (ch. 9).</p>
+
+  <h3>Who wrote it?</h3>
+  <ul>
+    <li><strong>Tradition:</strong> The Babylonian Talmud (Bava Batra 14b) says “Samuel wrote his book, Judges and Ruth.” This is ancient tradition, not something the text says.</li>
+    <li><strong>What the text reveals:</strong>
+      <ul>
+        <li>The refrain “in those days there was no king in Israel” (17:6; 18:1; 19:1; 21:25) is written <em>looking back from a time when Israel had a king</em>. So the final form comes from the monarchy or later.</li>
+        <li>“The Jebusites dwell with the children of Benjamin in Jerusalem unto this day” (1:21) suggests that part was written <em>before</em> David took Jerusalem (2 Sam 5:6–9, c. 1000 BC).</li>
+        <li>“Until the day of the captivity of the land” (18:30) most naturally points to the Assyrian deportations (733–722 BC). Some take it to mean the Philistines capturing the ark (1 Sam 4, compare 18:31). If it means Assyria, a final editorial touch came centuries later.</li>
+      </ul>
+    </li>
+    <li><strong>Modern scholarship:</strong> Since Martin Noth (1943), many scholars read Deuteronomy through 2 Kings as one “Deuteronomistic History.” In that view older sources, like the very ancient Song of Deborah, were gathered and framed during the monarchy and finished around the exile (6th century BC). Conservative scholars usually date the main composition to the early monarchy (Saul or David) and allow for later updates.</li>
+  </ul>
+  <div class="callout"><strong>Fair summary:</strong> Judges uses old sources and was shaped into its present form while Israel had kings. It may have been lightly updated later. Its message is written for readers who knew kingship and its problems.</div>
+</section>
+
+<!-- 3 SETTING -->
+<section class="block" id="setting">
+  <h2>3. Historical setting</h2>
+  <p class="sub">The world around Israel in c. 1200–1050 BC is well documented, even though the individual judges are not.</p>
+
+  <h3>The Late Bronze Age collapse (c. 1200–1150 BC)</h3>
+  <p>Around 1200 BC the great powers of the eastern Mediterranean fell into crisis. The Hittite empire collapsed, Mycenaean Greece fell, Ugarit was destroyed (c. 1185 BC), and Egypt’s grip on Canaan weakened. International trade broke down, and many Canaanite cities were destroyed or shrank. Into this vacuum came small new groups: Israel in the hill country, the Philistines on the coast, and later Ammon, Moab, and Edom east of the Jordan. <strong>Judges fits this fragmented world of local strongmen, raiders, and tribal militias.</strong></p>
+
+  <h3>Egypt, the missing superpower</h3>
+  <p>Egypt controlled Canaan through garrisons such as Beth-shean into the reign of Ramesses VI (c. 1140s BC), yet Judges never mentions Egypt. That fits a period when Egypt’s hold was fading, and it fits the book’s focus: the danger to Israel came from its own unfaithfulness and from its neighbors.</p>
+
+  <h3>Israel’s neighbors and oppressors</h3>
+  <div class="tablewrap"><table>
+    <tr><th>People</th><th>Where</th><th>In Judges</th></tr>
+    <tr><td>Canaanites</td><td>Valleys and old city-states (Hazor, Megiddo, Taanach, Gezer)</td><td>Chariot armies; Jabin and Sisera (4–5)</td></tr>
+    <tr><td>Philistines</td><td>Southern coast: Gaza, Ashkelon, Ashdod, Ekron, Gath</td><td>Shamgar (3:31); Samson (13–16)</td></tr>
+    <tr><td>Moabites</td><td>East of the Dead Sea</td><td>Eglon (3:12–30)</td></tr>
+    <tr><td>Ammonites</td><td>East of the Jordan (capital Rabbah, modern Amman)</td><td>Jephthah (10–11)</td></tr>
+    <tr><td>Midianites, Amalekites, “children of the east”</td><td>Desert nomads from the south and east</td><td>Camel-borne raids; Gideon (6–8)</td></tr>
+    <tr><td>Aram-naharaim</td><td>Upper Mesopotamia / Syria</td><td>Cushan-rishathaim; Othniel (3:7–11)</td></tr>
+  </table></div>
+
+  <h3>Canaanite religion</h3>
+  <p>Israel’s main temptation was not a foreign army. It was <strong>Baal</strong>, the storm god who was believed to bring rain and fertility, together with the goddesses <strong>Asherah</strong> and <strong>Astarte/Ashtoreth</strong> (2:13; 3:7; 10:6). Clay tablets found at Ugarit (Ras Shamra, Syria, from 1929 onward) preserve Canaanite myths about Baal, El, Asherah, and Anat. So we know this religion from its own texts, not only from the Bible. For farmers new to the land, worshiping the “local” fertility god must have felt like practical wisdom. Judges calls it covenant betrayal.</p>
+</section>
+
+<!-- 4 CHRONOLOGY -->
+<section class="block" id="chronology">
+  <h2>4. Chronology: how long was the period?</h2>
+  <p class="sub">An honest look at the numbers.</p>
+  <p>If you add up every period of oppression, rest, and judgeship in the book, you get about <strong>390 years</strong>. But:</p>
+  <ul>
+    <li><strong>1 Kings 6:1</strong> puts 480 years between the Exodus and Solomon’s 4th year (c. 966 BC), which gives an Exodus date of c. 1446 BC. The wilderness, Joshua, Eli, Samuel, Saul, and David also have to fit into those 480 years.</li>
+    <li><strong>Judges 11:26</strong>: Jephthah tells Ammon that Israel has held the land for “three hundred years.”</li>
+    <li><strong>Acts 13:20</strong>: Paul speaks of “about the space of four hundred and fifty years.” Depending on the manuscript reading, this figure may cover a longer span than the judges.</li>
+  </ul>
+  <div class="callout"><strong>The solution most scholars adopt:</strong> the judges <em>overlapped</em>. Each was a regional leader, and the book arranges them one after another for teaching purposes. Judges 10:7 itself says the Philistines (west) and the Ammonites (east) oppressed Israel <em>at the same time</em>, so Jephthah in the east and Samson in the west may have been contemporaries. Many numbers are also rounded (“40 years” = a generation).</div>
+
+  <h3>Two dating frameworks</h3>
+  <div class="grid">
+    <div class="card"><h4>Early date (Exodus c. 1446 BC)</h4><p>Based on 1 Kings 6:1 and Judges 11:26. The judges run from about 1380 to 1050 BC. Held by many conservative scholars.</p></div>
+    <div class="card"><h4>Late date (Exodus c. 1260 BC)</h4><p>Based on the store city “Raamses” (Ex 1:11), 13th-century destruction layers, and the Iron I hill-country settlements. The judges run from about 1200 to 1050 BC. The 480 years are read as 12 generations × 40.</p></div>
+  </div>
+  <p class="muted">Either way, the end is fixed: the judges period closes shortly before Saul, c. 1050 BC. The Philistine pressure behind the Samson stories matches what archaeology shows on the coast in the 12th–11th centuries BC.</p>
+</section>
+
+<!-- 5 EVIDENCE -->
+<section class="block" id="evidence">
+  <h2>5. What can actually be proven?</h2>
+  <p class="sub">No inscription names Gideon, Deborah, or Samson, and none should be expected, since village leaders in the 12th century BC left no monuments. But a lot of the <em>world</em> Judges describes can be checked. Each item is rated honestly below.</p>
+  <div class="legend">
+    <span><span class="badge b-ok">Established</span> firm evidence, broad agreement</span>
+    <span><span class="badge b-prob">Probable</span> good evidence, some debate</span>
+    <span><span class="badge b-deb">Debated</span> real disagreement among experts</span>
+    <span><span class="badge b-unk">Unknown</span> no outside evidence either way</span>
+  </div>
+
+  <div class="evidence">
+    <div class="card"><h4>“Israel” existed as a people in Canaan by c. 1208 BC <span class="badge b-ok">Established</span></h4>
+      <p>The <strong>Merneptah Stele</strong> (Egyptian Museum, Cairo; found by Flinders Petrie in 1896) records Pharaoh Merneptah’s campaign in Canaan in his 5th year: “Israel is laid waste; his seed is not.” The hieroglyph used for Israel marks a <em>people</em>, not a city or land. This is the earliest mention of Israel outside the Bible, and it places Israel in Canaan at the start of the judges era.</p></div>
+
+    <div class="card"><h4>A wave of new hill-country villages in Iron Age I <span class="badge b-ok">Established</span> <span class="badge b-deb">interpretation debated</span></h4>
+      <p>Surveys (notably Israel Finkelstein, 1980s) found that the number of small settlements in the central hill country of Ephraim, Manasseh, Benjamin, and Judah jumped from a few dozen to <strong>hundreds</strong> in the 12th–11th centuries BC. These villages were small, unwalled, and farm-based, with terraces, cisterns, grain silos, “four-room” pillared houses, and <strong>almost no pig bones</strong>, unlike Philistine sites. This fits Judges well: Israel lives mainly in the hills (1:19, 34) while Canaanites hold the valleys and cities. Scholars argue over whether these settlers came from outside or from within Canaanite society.</p></div>
+
+    <div class="card"><h4>The Philistines arrived on the coast c. 1175 BC <span class="badge b-ok">Established</span></h4>
+      <p>Ramesses III’s temple reliefs at <strong>Medinet Habu</strong> (Egypt) show his battle in year 8 (c. 1177 BC) against the “Sea Peoples,” including the <em>Peleset</em>, the Philistines. Their five cities named in the Bible (Gaza, Ashkelon, Ashdod, Ekron = Tel Miqne, Gath = Tell es-Safi) have all been excavated. They show Aegean-style pottery, hearths, loom weights, and diet (including pork), which marks them as newcomers. A 2019 ancient-DNA study of burials at Ashkelon (Feldman et al., <em>Science Advances</em>) found European-related ancestry in early Iron Age individuals. That matches the Bible’s tradition that the Philistines came from “Caphtor” (Amos 9:7), usually taken to be Crete or the Aegean.</p></div>
+
+    <div class="card"><h4>Philistine temples with central pillars (Samson, 16:25–30) <span class="badge b-prob">Probable</span></h4>
+      <p>The Philistine temple at <strong>Tell Qasile</strong> (Tel Aviv; excavated by Amihai Mazar, 1970s) had a roof supported by <strong>two central wooden pillars on stone bases</strong>, set close together. A strong man standing between them could plausibly push both. This does not prove the Samson story, but it shows the story matches real Philistine building design.</p></div>
+
+    <div class="card"><h4>Laish/Dan, a real city renamed (ch. 18) <span class="badge b-ok">Established</span></h4>
+      <p><strong>Laish</strong> appears in Egyptian Execration Texts (19th century BC) and in the Mari archives (18th century BC). Excavations at <strong>Tel Dan</strong> (Avraham Biran, 1966–1999) found a Bronze Age city under an Iron Age Israelite city. The famous <strong>Tel Dan Stele</strong> found there (9th century BC) mentions the “House of David.” That is later than Judges, but it confirms the city and the dynasty the book looks forward to.</p></div>
+
+    <div class="card"><h4>Shechem and the temple of El-Berith (9:46–49) <span class="badge b-prob">Probable</span></h4>
+      <p>At <strong>Tell Balata</strong> (Shechem, near Nablus), excavators (Ernst Sellin; later G. Ernest Wright, 1956–1973) found a massive <strong>fortress-temple</strong> (a <em>migdal</em>, or “tower”) whose last phase was destroyed around the 12th century BC. Wright identified it with the “tower of Shechem” and house of El-Berith that Abimelech burned. Many scholars accept a connection, though the exact dating is still discussed.</p></div>
+
+    <div class="card"><h4>Hazor and King Jabin (ch. 4) <span class="badge b-deb">Debated</span></h4>
+      <p>Hazor was the largest city in Canaan, and its Late Bronze city was <strong>destroyed in a fierce fire</strong> in the 13th century BC (Yadin; Ben-Tor). Some link that destruction to Joshua 11, where Joshua burns Hazor and kills a “Jabin.” Judges 4 has another Jabin reigning in Hazor. Common explanations: “Jabin” was a <strong>dynastic name</strong> (a Hazor king named <em>Ibni</em>-Addu appears in the Mari letters centuries earlier), or Judges 4 refers to a revived Canaanite power. Who destroyed Hazor, and when, is still argued.</p></div>
+
+    <div class="card"><h4>Shiloh as the central sanctuary (18:31; 21:19) <span class="badge b-prob">Probable</span></h4>
+      <p>Excavations at <strong>Khirbet Seilun</strong> (Danish 1920s–30s; Finkelstein 1980s; Stripling 2017–) show a significant Iron Age I site with storerooms and large collared-rim jars, destroyed around the mid-11th century BC. That fits Shiloh’s role in Judges and 1 Samuel and its later ruin (Jer 7:12). The dig team’s claims about specific cultic finds are still being evaluated.</p></div>
+
+    <div class="card"><h4>Timnah, Zorah, Beth-shemesh, and the Sorek Valley (Samson) <span class="badge b-ok">Established</span></h4>
+      <p>The Samson stories take place in the <strong>Shephelah</strong> (lowlands), the real border zone between Philistines and Israelites. Timnah is identified with <strong>Tel Batash</strong> (excavated by Kelm &amp; Mazar), which shows Philistine influence in this period. The geography is accurate and fits a disputed frontier.</p></div>
+
+    <div class="card"><h4>The Song of Deborah (ch. 5) is extremely old <span class="badge b-prob">Probable</span></h4>
+      <p>Most scholars, including critical ones, count Judges 5 among the <strong>oldest texts in the Hebrew Bible</strong>. Its grammar and vocabulary are archaic, and it names a tribal league (e.g., “Machir,” no Judah or Simeon) that does not match later arrangements. Many date it to the 12th century BC, close to the events it celebrates.</p></div>
+
+    <div class="card"><h4>Domesticated camels used by Midianite raiders (6:5) <span class="badge b-deb">Debated</span></h4>
+      <p>A 2013 study of the copper mines at Timna (Sapir-Hen &amp; Ben-Yosef) found domesticated camels in the <em>southern Levant</em> no earlier than the late 10th century BC. But camels were probably domesticated in <em>Arabia</em> earlier, and the Midianites were Arabian desert people, not Levantine farmers. So it is plausible, though debated.</p></div>
+
+    <div class="card"><h4>Cushan-rishathaim, Eglon, Sisera, and the judges themselves <span class="badge b-unk">Unknown</span></h4>
+      <p>No outside text names any person from Judges. “Rishathaim” is Hebrew wordplay (“double wickedness”). Some have tried to link Cushan to a Syrian ruler or to “Kushan-rom” in Egyptian records, but no identification is accepted. This silence is normal: almost no individual village leaders from this period are known from any source.</p></div>
+  </div>
+
+  <div class="callout"><strong>Bottom line:</strong> Archaeology cannot prove that Ehud killed Eglon or that Samson pulled down a temple. It <em>does</em> confirm the setting Judges describes: Israel as a people in Canaan by c. 1208 BC, small highland villages, Canaanite strength in the valleys, Philistines arriving and pressing inland, Baal worship, and real places such as Shechem, Laish/Dan, Shiloh, and Timnah. The book’s realism, including its unflattering portrait of Israel, is one reason many historians take its core traditions seriously.</div>
+</section>
+
+<!-- 6 STRUCTURE -->
+<section class="block" id="structure">
+  <h2>6. Structure of the book</h2>
+  <p class="sub">Two introductions, a central cycle of judges, and two conclusions. The outer parts mirror each other.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Section</th><th>Chapters</th><th>Content</th><th>Focus</th></tr>
+    <tr><td><strong>Prologue A</strong></td><td class="num">1:1–2:5</td><td>Incomplete conquest; tribes fail to drive out Canaanites</td><td>Military failure</td></tr>
+    <tr><td><strong>Prologue B</strong></td><td class="num">2:6–3:6</td><td>New generation forgets the LORD; the cycle explained in advance</td><td>Religious failure</td></tr>
+    <tr><td><strong>Body</strong></td><td class="num">3:7–16:31</td><td>Othniel → Samson: 12 judges in a worsening pattern</td><td>The cycle / the spiral</td></tr>
+    <tr><td><strong>Epilogue A</strong></td><td class="num">17–18</td><td>Micah’s idol; the tribe of Dan steals it and a priest</td><td>Religious chaos</td></tr>
+    <tr><td><strong>Epilogue B</strong></td><td class="num">19–21</td><td>The Levite’s concubine; civil war against Benjamin</td><td>Moral &amp; social chaos</td></tr>
+  </table></div>
+  <div class="callout"><strong>Bookends:</strong> The book opens with Israel asking “Who shall go up for us… first?” and God answering “Judah” (1:1–2). The same question and answer come back in 20:18, but now the enemy is a fellow tribe of Israel. Israel starts by fighting Canaanites and ends by fighting itself.</div>
+  <p><strong>Note on the epilogue’s timing:</strong> Chapters 17–21 probably happened <em>early</em> in the period, not after Samson. Phinehas, Aaron’s grandson, is still serving (20:28), and Moses’ grandson Jonathan is a priest (18:30). The author placed them at the end on purpose, as a portrait of where the whole period was heading.</p>
+</section>
+
+<!-- 7 CYCLE -->
+<section class="block" id="cycle">
+  <h2>7. The cycle &amp; the downward spiral</h2>
+  <p class="sub">Judges 2:11–19 explains the pattern before the stories begin.</p>
+  <div class="diagram">
+    <svg viewBox="0 0 340 340" role="img" aria-label="The cycle of Judges: Sin, Servitude, Supplication, Salvation, Silence">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--muted)"/></marker></defs>
+      <circle cx="170" cy="170" r="118" class="svg-arc" stroke-dasharray="3 5"/>
+      <path class="svg-arc" marker-end="url(#ah)" d="M210 66 A118 118 0 0 1 272 128"/>
+      <path class="svg-arc" marker-end="url(#ah)" d="M285 215 A118 118 0 0 1 238 272"/>
+      <path class="svg-arc" marker-end="url(#ah)" d="M140 285 A118 118 0 0 1 82 252"/>
+      <path class="svg-arc" marker-end="url(#ah)" d="M55 180 A118 118 0 0 1 68 108"/>
+      <path class="svg-arc" marker-end="url(#ah)" d="M100 76 A118 118 0 0 1 134 58"/>
+      <g><circle cx="170" cy="52" r="38" class="svg-node"/><text x="170" y="50" class="svg-label">SIN</text><text x="170" y="65" class="svg-sub">“did evil”</text></g>
+      <g><circle cx="282" cy="134" r="38" class="svg-node"/><text x="282" y="132" class="svg-label">SERVITUDE</text><text x="282" y="147" class="svg-sub">God “sold them”</text></g>
+      <g><circle cx="239" cy="266" r="38" class="svg-node"/><text x="239" y="264" class="svg-label">SUPPLICATION</text><text x="239" y="279" class="svg-sub">“cried unto”</text></g>
+      <g><circle cx="101" cy="266" r="38" class="svg-node"/><text x="101" y="264" class="svg-label">SALVATION</text><text x="101" y="279" class="svg-sub">God “raised up”</text></g>
+      <g><circle cx="58" cy="134" r="38" class="svg-node"/><text x="58" y="132" class="svg-label">SILENCE</text><text x="58" y="147" class="svg-sub">“land had rest”</text></g>
+      <text x="170" y="166" class="svg-center">…and it</text><text x="170" y="184" class="svg-center">gets worse</text>
+    </svg>
+    <div>
+      <ol>
+        <li><strong>Sin:</strong> “The children of Israel did evil in the sight of the LORD” (2:11; 3:7, 12; 4:1; 6:1; 10:6; 13:1).</li>
+        <li><strong>Servitude:</strong> The LORD’s anger burns and he “sold them into the hands” of an enemy (2:14; 3:8; 4:2; 10:7).</li>
+        <li><strong>Supplication:</strong> Israel “cried unto the LORD” (3:9, 15; 4:3; 6:6; 10:10). This is usually a cry of pain, not always of repentance.</li>
+        <li><strong>Salvation:</strong> “The LORD raised up a deliverer” (3:9, 15), often empowered by his Spirit.</li>
+        <li><strong>Silence (rest):</strong> “The land had rest… years” (3:11, 30; 5:31; 8:28). Then the judge dies, and Israel goes back to idols.</li>
+      </ol>
+      <p><strong>Not a circle, a spiral.</strong> “When the judge was dead… they returned, and corrupted themselves <em>more than their fathers</em>” (2:19). Each turn goes lower.</p>
+    </div>
+  </div>
+
+  <h3>Watch the pattern break down</h3>
+  <ul>
+    <li><strong>Rest disappears:</strong> Rest is recorded after Othniel, Ehud, Deborah, and Gideon. After Gideon, rest is never mentioned again.</li>
+    <li><strong>The cry disappears:</strong> Under the Philistines (13:1), Israel does not even cry out. In 15:11 Judah hands Samson over, saying “the Philistines are rulers over us.” They have made peace with oppression.</li>
+    <li><strong>Unity disappears:</strong> Ephraim is calmed by Gideon (8:1–3), slaughtered by Jephthah (12:1–6), and in the end all Israel nearly wipes out Benjamin (20).</li>
+    <li><strong>The judges get worse:</strong> Othniel has no recorded fault. Samson is driven by appetite and revenge.</li>
+    <li><strong>The treatment of women gets worse</strong> (see below).</li>
+  </ul>
+
+  <h3>The spiral in the treatment of women</h3>
+  <div class="spiral">
+    <div class="row"><strong>Achsah</strong><span>1:12–15. Honored as a bride, boldly asks her father for a blessing and receives springs.</span></div>
+    <div class="row"><strong>Deborah &amp; Jael</strong><span>4–5. A prophetess leads and a tent-dwelling woman wins the battle.</span></div>
+    <div class="row"><strong>Woman of Thebez</strong><span>9:53. Kills the tyrant Abimelech with a millstone.</span></div>
+    <div class="row"><strong>Jephthah’s daughter</strong><span>11:34–40. Victim of her father’s rash vow.</span></div>
+    <div class="row"><strong>Samson’s women</strong><span>14–16. Threatened, burned alive, bought, and used to betray.</span></div>
+    <div class="row"><strong>The Levite’s concubine</strong><span>19. Abused to death and dismembered.</span></div>
+    <div class="row"><strong>Daughters of Jabesh &amp; Shiloh</strong><span>21. 600 women seized by force to “fix” the Benjamin problem.</span></div>
+  </div>
+</section>
+
+<!-- 8 JUDGES TABLE -->
+<section class="block" id="judges">
+  <h2>8. The twelve judges</h2>
+  <p class="sub">Minor judges are in grey. Years are as the text states them.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Judge</th><th>Tribe / region</th><th>Oppressor</th><th>Oppression</th><th>Rest / judged</th><th>Ref</th></tr>
+    <tr><td><strong>Othniel</strong></td><td>Judah (Kenizzite; Caleb’s nephew)</td><td>Cushan-rishathaim of Aram-naharaim</td><td class="num">8 yrs</td><td class="num">40 yrs rest</td><td class="num">3:7–11</td></tr>
+    <tr><td><strong>Ehud</strong></td><td>Benjamin</td><td>Eglon, king of Moab (+ Ammon, Amalek)</td><td class="num">18 yrs</td><td class="num">80 yrs rest</td><td class="num">3:12–30</td></tr>
+    <tr class="minor"><td>Shamgar</td><td>Unknown (“son of Anath”)</td><td>Philistines</td><td class="num">—</td><td class="num">—</td><td class="num">3:31; 5:6</td></tr>
+    <tr><td><strong>Deborah</strong> (with Barak)</td><td>Ephraim hills / Barak of Naphtali</td><td>Jabin of Hazor; commander Sisera</td><td class="num">20 yrs</td><td class="num">40 yrs rest</td><td class="num">4–5</td></tr>
+    <tr><td><strong>Gideon</strong> (Jerubbaal)</td><td>Manasseh (Ophrah)</td><td>Midianites, Amalekites, “children of the east”</td><td class="num">7 yrs</td><td class="num">40 yrs rest</td><td class="num">6–8</td></tr>
+    <tr><td><em>Abimelech</em> (anti-judge)</td><td>Shechem</td><td>He <em>is</em> the oppressor</td><td class="num">—</td><td class="num">“reigned” 3 yrs</td><td class="num">9</td></tr>
+    <tr class="minor"><td>Tola</td><td>Issachar</td><td>—</td><td class="num">—</td><td class="num">23 yrs</td><td class="num">10:1–2</td></tr>
+    <tr class="minor"><td>Jair</td><td>Gilead</td><td>—</td><td class="num">—</td><td class="num">22 yrs</td><td class="num">10:3–5</td></tr>
+    <tr><td><strong>Jephthah</strong></td><td>Gilead (east Manasseh)</td><td>Ammonites (and Philistines, 10:7)</td><td class="num">18 yrs</td><td class="num">judged 6 yrs</td><td class="num">10:6–12:7</td></tr>
+    <tr class="minor"><td>Ibzan</td><td>Bethlehem (probably Zebulun’s, Josh 19:15)</td><td>—</td><td class="num">—</td><td class="num">7 yrs</td><td class="num">12:8–10</td></tr>
+    <tr class="minor"><td>Elon</td><td>Zebulun</td><td>—</td><td class="num">—</td><td class="num">10 yrs</td><td class="num">12:11–12</td></tr>
+    <tr class="minor"><td>Abdon</td><td>Ephraim (Pirathon)</td><td>—</td><td class="num">—</td><td class="num">8 yrs</td><td class="num">12:13–15</td></tr>
+    <tr><td><strong>Samson</strong></td><td>Dan (Zorah)</td><td>Philistines</td><td class="num">40 yrs</td><td class="num">judged 20 yrs</td><td class="num">13–16</td></tr>
+  </table></div>
+  <p class="muted">Six major judges come from six different tribes, starting with Judah in the south and spreading across the land. It is a tour of all Israel with no one untouched. After Othniel, no major judge comes from Judah, a point that matters for the book’s interest in the future king (see Themes).</p>
+  <p>Samuel later lists “Jerubbaal, and Bedan, and Jephthah, and Samuel” as deliverers (1 Sam 12:11). The Greek Septuagint reads “Barak” for Bedan. <strong>Hebrews 11:32</strong> names Gideon, Barak, Samson, and Jephthah among the heroes of faith.</p>
+</section>
+
+<!-- 9 CHAPTERS -->
+<section class="block" id="chapters">
+  <h2>9. Chapter-by-chapter guide</h2>
+  <p class="sub">Tap a chapter to open it. The notes boxes are saved in <em>this</em> browser on <em>this</em> device only.</p>
+  <div class="toolbar">
+    <button class="iconbtn" id="expandAll">Expand all</button>
+    <button class="iconbtn" id="collapseAll">Collapse all</button>
+  </div>
+
+  <div class="part-label">Prologue: Israel’s failure (1:1–3:6)</div>
+
+  <details class="ch" id="ch1"><summary><span class="n">1</span><span class="t">Incomplete conquest</span><span class="chev">›</span></summary><div class="body">
+    <p>After Joshua’s death Israel asks, “Who shall go up for us against the Canaanites first?” The answer is Judah. Judah and Simeon defeat <strong>Adoni-bezek</strong> and cut off his thumbs and big toes, which he admits he did to 70 kings (1:7, poetic justice). Judah takes Jerusalem and burns it (1:8), plus Hebron and Debir. <strong>Othniel</strong> captures Debir and wins <strong>Achsah</strong>, who asks her father Caleb for springs of water.</p>
+    <p>Then the tone shifts. Judah “could not drive out the inhabitants of the valley, because they had chariots of iron” (1:19), even though “the LORD was with Judah.” Benjamin fails at Jerusalem (1:21). A list of failures follows: Manasseh, Ephraim, Zebulun, Asher, Naphtali, and Dan, which is pushed into the hills by the Amorites (1:34).</p>
+    <h4>Look for</h4>
+    <ul>
+      <li>The downhill wording: Israel “drove out” → “did not drive out” → Canaanites “dwelt among” Israel → Israel “dwelt among the Canaanites” (Asher &amp; Naphtali, 1:32–33) → Dan is itself driven out.</li>
+      <li>Bethel is taken by sparing a traitor who then builds a new Canaanite Luz (1:22–26), an echo of Rahab turned upside down.</li>
+      <li>Jerusalem “burned” (1:8) yet Jebusites still living there (1:21). Probably a raid, not permanent occupation.</li>
+    </ul>
+    <ol class="qs"><li>Was “could not” (1:19) a matter of ability or of faith? Compare Josh 17:16–18.</li><li>What are the “Canaanites” we tolerate because removing them seems too hard?</li></ol>
+    <label class="notelabel" for="n-ch1">My notes</label><textarea class="note" id="n-ch1" data-key="ch1"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch2"><summary><span class="n">2</span><span class="t">Bochim &amp; the generation that forgot</span><span class="chev">›</span></summary><div class="body">
+    <p>The <strong>Angel of the LORD</strong> comes up from Gilgal to Bochim. He reminds Israel that God kept his covenant, but they made covenants with the Canaanites and did not tear down their altars. Now those nations will be “thorns in your sides” and their gods a “snare” (2:3). The people weep (Bochim = “weepers”) and sacrifice, but nothing changes.</p>
+    <p>2:6–10 repeats Joshua’s death. Then: “there arose another generation… which knew not the LORD” (2:10). 2:11–23 lays out the cycle for the whole book, and God decides to leave the nations in the land to <strong>test</strong> Israel.</p>
+    <h4>Look for</h4>
+    <ul><li>“Knew not the LORD”: faith was not passed on. Compare Deut 6:6–9 and Josh 4:6–7.</li><li>2:18: “it repented the LORD because of their groanings,” God moved by suffering even when it is self-inflicted.</li></ul>
+    <ol class="qs"><li>How does a whole generation lose its faith in one lifetime? What was missing?</li><li>What is the difference between weeping (2:4) and repenting?</li></ol>
+    <label class="notelabel" for="n-ch2">My notes</label><textarea class="note" id="n-ch2" data-key="ch2"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch3"><summary><span class="n">3</span><span class="t">Nations left to test · Othniel · Ehud · Shamgar</span><span class="chev">›</span></summary><div class="body">
+    <p><strong>3:1–6:</strong> The remaining nations test Israel and teach a new generation war. Israel intermarries and serves their gods.</p>
+    <p><strong>Othniel (3:7–11):</strong> The model judge. “The Spirit of the LORD came upon him” (first time in the book). He defeats Cushan-rishathaim, and the land rests 40 years. Short, clean, no faults.</p>
+    <p><strong>Ehud (3:12–30):</strong> God <em>strengthens</em> Eglon of Moab against Israel. Ehud, a <strong>left-handed Benjamite</strong> (ironic, since Benjamin means “son of the right hand”), straps a cubit-long double-edged dagger to his right thigh, where guards would not check. He tells Eglon, a “very fat man,” “I have a message from God unto thee,” and stabs him so that “the fat closed upon the blade.” The servants wait, thinking the king is “covering his feet” (relieving himself). Ehud rallies Ephraim, seizes the Jordan fords, and 10,000 Moabites die. The land rests 80 years, the longest rest in the book.</p>
+    <p><strong>Shamgar (3:31):</strong> Kills 600 Philistines with an ox goad. “Son of Anath” is a Canaanite goddess’s name, so he may not even have been an Israelite.</p>
+    <h4>Look for</h4>
+    <ul><li>The story is told with dark humor, the way an oppressed people would tell it about a tyrant.</li><li>God uses unlikely tools: a left hand, a farm tool.</li></ul>
+    <ol class="qs"><li>Why does the author include the crude details about Eglon?</li><li>Othniel is the model. What makes him different from those who follow?</li></ol>
+    <label class="notelabel" for="n-ch3">My notes</label><textarea class="note" id="n-ch3" data-key="ch3"></textarea>
+  </div></details>
+
+  <div class="part-label">The judges (3:7–16:31)</div>
+
+  <details class="ch" id="ch4"><summary><span class="n">4</span><span class="t">Deborah, Barak &amp; Jael</span><span class="chev">›</span></summary><div class="body">
+    <p><strong>Jabin</strong>, king of Canaan who reigned in Hazor, and his commander <strong>Sisera</strong>, with <strong>900 iron chariots</strong>, oppress Israel 20 years. <strong>Deborah</strong>, a prophetess, judges Israel under her palm tree between Ramah and Bethel. She summons <strong>Barak</strong> from Kedesh-naphtali with God’s command to gather 10,000 men at Mount Tabor. Barak replies, “If thou wilt go with me, then I will go.” Deborah agrees but says the honor will go to a woman.</p>
+    <p>At the Kishon River the LORD “discomfited” Sisera’s army. Sisera flees on foot to the tent of <strong>Jael</strong>, wife of Heber the Kenite, whose clan was at peace with Jabin. She gives him milk, covers him, and drives a tent peg through his temple.</p>
+    <h4>Look for</h4>
+    <ul><li>The “woman” who gets the honor turns out to be Jael, not Deborah, which is a twist.</li><li>Heber had separated from the Kenites, who were Moses’ in-laws and allies of Israel (1:16; 4:11).</li><li>Jael’s act violated hospitality customs. How does the Bible evaluate it? See 5:24.</li></ul>
+    <ol class="qs"><li>Was Barak’s request a lack of faith or wisdom in wanting God’s prophet present? (Heb 11:32 lists him.)</li><li>What does it say that God raised up a woman to lead in this era?</li></ol>
+    <label class="notelabel" for="n-ch4">My notes</label><textarea class="note" id="n-ch4" data-key="ch4"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch5"><summary><span class="n">5</span><span class="t">The Song of Deborah</span><span class="chev">›</span></summary><div class="body">
+    <p>A victory hymn retelling chapter 4 as poetry, and one of the oldest passages in the Bible. It opens with the LORD marching from Seir and Edom as the earth trembles (5:4–5, compare Ex 19; Ps 68). Life before the victory: highways empty, villagers gone, “until that I Deborah arose… a mother in Israel” (5:7).</p>
+    <p>A roll call of tribes: <strong>praised</strong> (Ephraim, Benjamin, Machir, Zebulun, Issachar, Naphtali) and <strong>rebuked</strong> (Reuben “searchings of heart,” Gilead, Dan “in ships,” Asher). Meroz is cursed for not coming (5:23). “The stars in their courses fought against Sisera. The river of Kishon swept them away” (5:20–21), which suggests a sudden storm turned the plain to mud and made the chariots useless. That is a direct blow to Baal, the supposed storm god. Jael is “blessed above women” (5:24). The song ends with Sisera’s mother at her window, waiting for plunder that will never come.</p>
+    <ol class="qs"><li>Chapter 4 is prose, chapter 5 is poetry. What does the song add?</li><li>Which tribes stayed home? What excuses do believers give today for sitting out God’s work?</li><li>Why end with Sisera’s mother? What emotions does that create?</li></ol>
+    <label class="notelabel" for="n-ch5">My notes</label><textarea class="note" id="n-ch5" data-key="ch5"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch6"><summary><span class="n">6</span><span class="t">Gideon’s call</span><span class="chev">›</span></summary><div class="body">
+    <p>Midianites, Amalekites, and “children of the east” pour in each harvest “as grasshoppers for multitude… both they and their camels were without number” (6:5). For seven years Israel hides in caves. When they cry out, God first sends a <strong>prophet</strong> to remind them why this is happening (6:7–10).</p>
+    <p>The Angel of the LORD finds <strong>Gideon</strong> threshing wheat in a winepress (hiding) and greets him, “The LORD is with thee, thou mighty man of valour.” Gideon objects: “my family is poor in Manasseh, and I am the least in my father’s house.” Fire consumes his offering, and he builds an altar, <em>Jehovah-shalom</em> (“The LORD is peace”). He tears down his father’s Baal altar and Asherah pole, but <strong>by night, out of fear</strong>. He is named <strong>Jerubbaal</strong> (“let Baal contend”). The Spirit “clothed” Gideon (6:34). Then comes the famous fleece, tested twice.</p>
+    <h4>Look for</h4>
+    <ul><li>Gideon’s own family was running a Baal shrine. The rot started at home.</li><li>The fleece comes <em>after</em> God had already clearly spoken (6:14, 16). It shows weak faith that God graciously accommodates. It is not a model for finding God’s will.</li></ul>
+    <ol class="qs"><li>God calls Gideon by what he will become, not what he is. How does that encourage you?</li><li>Is “putting out a fleece” a good practice today? Why or why not?</li></ol>
+    <label class="notelabel" for="n-ch6">My notes</label><textarea class="note" id="n-ch6" data-key="ch6"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch7"><summary><span class="n">7</span><span class="t">Gideon’s 300</span><span class="chev">›</span></summary><div class="body">
+    <p>God says the army is <em>too big</em>, “lest Israel vaunt themselves against me, saying, Mine own hand hath saved me” (7:2). 32,000 → the fearful go home (22,000 leave, compare Deut 20:8) → 10,000 → those who lap water go, and <strong>300</strong> remain.</p>
+    <p>To calm Gideon’s fear, God sends him into the enemy camp, where he hears a soldier’s dream: a barley loaf rolls in and flattens a tent. Gideon worships. The 300 surround the camp at night with trumpets, jars, and torches, break the jars, and shout “The sword of the LORD, and of Gideon!” Midian panics and turns on itself. Ephraim captures the princes Oreb and Zeeb.</p>
+    <ol class="qs"><li>Why does God deliberately shrink the army?</li><li>Where has God put you in a position where only he can get the credit?</li></ol>
+    <label class="notelabel" for="n-ch7">My notes</label><textarea class="note" id="n-ch7" data-key="ch7"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch8"><summary><span class="n">8</span><span class="t">Gideon’s later years: vengeance &amp; the ephod</span><span class="chev">›</span></summary><div class="body">
+    <p>Gideon calms offended Ephraim with a humble answer (8:1–3). But when Succoth and Penuel refuse bread to his men, he later tears the elders of Succoth with thorns and kills the men of Penuel. He executes the Midianite kings <strong>Zebah and Zalmunna</strong> as <em>personal</em> vengeance for his brothers (8:19).</p>
+    <p>Israel offers him a dynasty. He answers well: “I will not rule over you… the LORD shall rule over you” (8:23). Then he asks for gold earrings and makes an <strong>ephod</strong> in Ophrah, and “all Israel went thither a whoring after it: which thing became a snare unto Gideon, and to his house” (8:27). He has 70 sons by many wives and a concubine’s son in Shechem whom he names <strong>Abimelech</strong>, “my father is king.” After his death Israel worships <strong>Baal-berith</strong> (“Baal of the covenant”).</p>
+    <ol class="qs"><li>Gideon refuses the title of king but lives like one. What does that suggest?</li><li>How can something connected with worship (an ephod) become an idol?</li><li>Compare Gideon in ch. 6 with Gideon in ch. 8. What changed?</li></ol>
+    <label class="notelabel" for="n-ch8">My notes</label><textarea class="note" id="n-ch8" data-key="ch8"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch9"><summary><span class="n">9</span><span class="t">Abimelech, the bramble king</span><span class="chev">›</span></summary><div class="body">
+    <p>Abimelech wins over Shechem through his mother’s family, hires “vain and light persons” with 70 pieces of silver from the temple of Baal-berith, and murders his 70 brothers “upon one stone.” Only <strong>Jotham</strong> escapes. Shechem crowns Abimelech king.</p>
+    <p>From Mount Gerizim, Jotham tells Israel’s first parable, the <strong>fable of the trees</strong>. The olive, fig, and vine all refuse to be king because they have better things to do. Only the worthless <strong>bramble</strong> accepts: “come and put your trust in my shadow,” or fire will consume the cedars. Three years later God sends “an evil spirit” between Abimelech and Shechem. After Gaal’s revolt, Abimelech destroys Shechem, sows it with salt, and burns about 1,000 people in the tower of El-berith. At <strong>Thebez</strong> a woman drops an upper millstone on his head. He asks his armor-bearer to kill him so no one will say a woman did it. Jotham’s curse is fulfilled (9:56–57).</p>
+    <ol class="qs"><li>What does Jotham’s fable say about who seeks power and why?</li><li>How does 9:56–57 show God’s justice working through human events?</li></ol>
+    <label class="notelabel" for="n-ch9">My notes</label><textarea class="note" id="n-ch9" data-key="ch9"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch10"><summary><span class="n">10</span><span class="t">Tola, Jair &amp; “I will deliver you no more”</span><span class="chev">›</span></summary><div class="body">
+    <p>Two minor judges: <strong>Tola</strong> (23 years) and <strong>Jair</strong>, who had 30 sons riding 30 donkeys with 30 towns, which is a sign of wealth and status.</p>
+    <p>Then comes the worst apostasy yet: Israel serves Baalim, Ashtaroth, and the gods of Syria, Sidon, Moab, Ammon, and the Philistines, <strong>seven sets of gods</strong> (10:6). The Philistines and Ammonites oppress them simultaneously for 18 years. When Israel cries out, God answers: “Ye have forsaken me… wherefore I will deliver you no more. Go and cry unto the gods which ye have chosen” (10:13–14). Israel confesses and puts away the foreign gods, and “his soul was grieved for the misery of Israel” (10:16).</p>
+    <ol class="qs"><li>Why does God refuse at first? Was Israel’s repentance real this time?</li><li>What does 10:16 reveal about God’s heart?</li></ol>
+    <label class="notelabel" for="n-ch10">My notes</label><textarea class="note" id="n-ch10" data-key="ch10"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch11"><summary><span class="n">11</span><span class="t">Jephthah &amp; his vow</span><span class="chev">›</span></summary><div class="body">
+    <p><strong>Jephthah</strong>, son of a prostitute, is driven out by his half-brothers and leads a band of “vain men” in the land of Tob. When Ammon attacks, Gilead’s elders come begging, and he <strong>bargains</strong> to become their head.</p>
+    <p>He sends Ammon’s king a detailed <strong>historical argument</strong> (11:12–27) based on Numbers 20–21: Israel took the land from Sihon the Amorite, not from Ammon, and has held it 300 years. The Spirit of the LORD comes on him (11:29). Then he makes a <strong>vow</strong>: whatever comes out of his house to meet him, he will offer as a burnt offering. His only child, his daughter, comes out dancing with timbrels. She asks for two months to mourn her virginity. He “did with her according to his vow,” and Israel’s daughters mourned her four days each year.</p>
+    <h4>Look for</h4>
+    <ul><li>Jephthah knows Israel’s history well but negotiates with God the way he negotiated with the elders.</li><li>The Spirit had <em>already</em> come upon him <em>before</em> the vow. The vow was unnecessary.</li><li>See “Hard passages” for the debate over what happened to his daughter.</li></ul>
+    <ol class="qs"><li>Why would Jephthah make such a vow? What does it reveal about how Canaanite ideas had affected Israel?</li><li>What should he have done once he realized the vow was sinful? (Lev 27 and Deut 12:31 are relevant.)</li></ol>
+    <label class="notelabel" for="n-ch11">My notes</label><textarea class="note" id="n-ch11" data-key="ch11"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch12"><summary><span class="n">12</span><span class="t">Shibboleth · Ibzan, Elon, Abdon</span><span class="chev">›</span></summary><div class="body">
+    <p>Ephraim, offended again, threatens to burn Jephthah’s house. Unlike Gideon, Jephthah goes to war. Gilead holds the Jordan fords and tests anyone crossing: say <strong>“Shibboleth.”</strong> Ephraimites say “Sibboleth,” and 42,000 are killed. This is <strong>Israel killing Israel</strong>, a preview of chapter 20. The word “shibboleth” entered English meaning a test that identifies outsiders.</p>
+    <p>Minor judges: <strong>Ibzan</strong> of Bethlehem (30 sons, 30 daughters, all married outside his clan), <strong>Elon</strong> of Zebulun, and <strong>Abdon</strong> of Ephraim (40 sons, 30 grandsons, 70 donkeys).</p>
+    <ol class="qs"><li>Compare 8:1–3 with 12:1–6. What does a “soft answer” (Prov 15:1) accomplish?</li><li>What small differences divide believers today?</li></ol>
+    <label class="notelabel" for="n-ch12">My notes</label><textarea class="note" id="n-ch12" data-key="ch12"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch13"><summary><span class="n">13</span><span class="t">Samson’s birth</span><span class="chev">›</span></summary><div class="body">
+    <p>The Philistines rule Israel for 40 years, and <strong>no cry to God is recorded</strong>. The Angel of the LORD appears to the barren wife of <strong>Manoah</strong>, a Danite of Zorah. She will bear a son who is to be a <strong>Nazirite</strong> from the womb (Num 6: no wine, no unclean contact with the dead, no razor). “He shall <em>begin</em> to deliver Israel” (13:5), not finish it.</p>
+    <p>Manoah asks for a second visit and asks the Angel’s name: “Why askest thou thus after my name, seeing it is <strong>secret</strong>?” (Hebrew <em>peli</em>, “wonderful, beyond understanding,” 13:18, from the same root as “Wonderful” in Isaiah 9:6). The Angel ascends in the altar flame. The Spirit begins to stir Samson at Mahaneh-dan.</p>
+    <ol class="qs"><li>Compare Samson’s birth with Isaac, Samuel, John the Baptist, and Jesus. What is God signaling?</li><li>Who shows more spiritual insight, Manoah or his wife (13:22–23)?</li></ol>
+    <label class="notelabel" for="n-ch13">My notes</label><textarea class="note" id="n-ch13" data-key="ch13"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch14"><summary><span class="n">14</span><span class="t">The lion, the riddle &amp; the Timnah wedding</span><span class="chev">›</span></summary><div class="body">
+    <p>Samson sees a Philistine woman at Timnah: “Get her for me; for she pleaseth me well” (14:3). Literally, “she is <strong>right in my eyes</strong>,” the book’s theme phrase. Yet “it was of the LORD, that he sought an occasion against the Philistines” (14:4). He tears a lion apart by the Spirit. Later he takes honey from its carcass, which makes him unclean as a Nazirite, and hides it from his parents.</p>
+    <p>At a seven-day drinking feast (<em>mishteh</em>) he poses a riddle to 30 Philistine companions: “Out of the eater came forth meat…” They threaten his bride, she pries out the answer, and Samson says “If ye had not plowed with my heifer…” He kills 30 men of Ashkelon for their garments to pay the bet. His wife is given to his companion.</p>
+    <ol class="qs"><li>How do God’s sovereignty (14:4) and Samson’s sinful choices both operate here?</li><li>Which Nazirite rules does Samson break, and how casually?</li></ol>
+    <label class="notelabel" for="n-ch14">My notes</label><textarea class="note" id="n-ch14" data-key="ch14"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch15"><summary><span class="n">15</span><span class="t">Foxes, fire &amp; the jawbone</span><span class="chev">›</span></summary><div class="body">
+    <p>Denied his wife, Samson ties 300 foxes (or jackals) tail to tail with torches and burns the Philistine grain, vineyards, and olives. The Philistines burn his wife and her father. Samson strikes them “hip and thigh” and hides in the rock of Etam.</p>
+    <p><strong>3,000 men of Judah</strong> come, not to join him but to bind him and hand him over: “Knowest thou not that the Philistines are rulers over us?” (15:11). The Spirit comes on him, the ropes melt, and with a fresh <strong>jawbone of a donkey</strong> he kills 1,000 men. Parched, he cries out to God for the first time. God splits a hollow place, and water flows: <em>En-hakkore</em>, “the spring of him that called.” He judged Israel 20 years.</p>
+    <ol class="qs"><li>What does Judah’s reaction show about Israel’s spiritual state?</li><li>Samson’s first prayer is about his own thirst. What does God’s answer show?</li></ol>
+    <label class="notelabel" for="n-ch15">My notes</label><textarea class="note" id="n-ch15" data-key="ch15"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch16"><summary><span class="n">16</span><span class="t">Delilah &amp; Samson’s death</span><span class="chev">›</span></summary><div class="body">
+    <p>At Gaza Samson visits a prostitute, then carries off the city gates to a hill “before Hebron,” deep in Judah. In the Valley of Sorek he loves <strong>Delilah</strong>. The Philistine lords each offer her <strong>1,100 pieces of silver</strong>. Three times he lies (bowstrings, new ropes, weaving his hair), and three times she betrays him, yet he stays. Finally “he told her all his heart.” She shaves his seven locks, “and he wist not that the LORD was departed from him” (16:20).</p>
+    <p>His eyes are gouged out, and he grinds grain in the Gaza prison. “Howbeit the hair of his head began to grow again” (16:22). At a feast to <strong>Dagon</strong> he is brought out for entertainment. He prays, “remember me… strengthen me… only this once,” and pushes on the two middle pillars. “The dead which he slew at his death were more than they which he slew in his life” (16:30).</p>
+    <ol class="qs"><li>Samson’s strength was never in his hair but in the LORD. Why did losing the hair matter?</li><li>How could Samson not notice God had left him (16:20)? Can that happen to us?</li><li>Samson is in Hebrews 11. What does that say about God’s grace and about faith?</li></ol>
+    <label class="notelabel" for="n-ch16">My notes</label><textarea class="note" id="n-ch16" data-key="ch16"></textarea>
+  </div></details>
+
+  <div class="part-label">Epilogue: “No king in Israel” (17–21)</div>
+
+  <details class="ch" id="ch17"><summary><span class="n">17</span><span class="t">Micah’s household idol</span><span class="chev">›</span></summary><div class="body">
+    <p><strong>Micah</strong> (“who is like Yahweh?”) of Ephraim steals 1,100 pieces of silver from his mother, the same sum Delilah was paid, and returns it when she utters a curse. She blesses him “of the LORD” and has part of the silver made into a <strong>carved and molten image</strong> dedicated to Yahweh! Micah sets up a shrine with an ephod and teraphim and ordains his son. Then a wandering young <strong>Levite from Bethlehem</strong> comes by, and Micah hires him as priest for 10 shekels a year, clothing, and food. “Now know I that the LORD will do me good, seeing I have a Levite to my priest” (17:13).</p>
+    <ol class="qs"><li>Micah uses God’s name, a Levite, and religious objects. What’s wrong with his religion?</li><li>How do people today try to “hire” God’s blessing?</li></ol>
+    <label class="notelabel" for="n-ch17">My notes</label><textarea class="note" id="n-ch17" data-key="ch17"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch18"><summary><span class="n">18</span><span class="t">Dan steals a god &amp; a priest</span><span class="chev">›</span></summary><div class="body">
+    <p>The tribe of Dan, still without its allotted land (compare 1:34), sends spies north. They stop at Micah’s house and get a favorable word from the Levite. They find <strong>Laish</strong>, “quiet and secure,” far from help. 600 armed Danites return, steal Micah’s idols, and persuade the Levite: “is it better… to be a priest unto the house of one man, or… unto a tribe?” He is glad to go. Micah protests, “Ye have taken away my gods which I made.” The Danites massacre Laish, rebuild it as <strong>Dan</strong>, and set up the image.</p>
+    <p>18:30 reveals the Levite’s name: <strong>Jonathan son of Gershom, son of Moses</strong>. Moses’ own grandson! In the Hebrew text a small raised letter <em>nun</em> was inserted so that it reads “Manasseh,” which ancient rabbis explained as a way to spare Moses’ honor. The shrine lasted “until the day of the captivity of the land.” Later Jeroboam set up a golden calf at Dan (1 Kgs 12:29).</p>
+    <ol class="qs"><li>How quickly did idolatry reach Moses’ own family? What does that teach?</li><li>Compare Dan’s conquest of Laish with Joshua’s conquests. What is missing?</li></ol>
+    <label class="notelabel" for="n-ch18">My notes</label><textarea class="note" id="n-ch18" data-key="ch18"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch19"><summary><span class="n">19</span><span class="t">The Levite’s concubine at Gibeah</span><span class="chev">›</span></summary><div class="body">
+    <p><em>This is one of the darkest chapters in Scripture.</em> A Levite from Ephraim fetches his concubine from her father’s house in <strong>Bethlehem</strong>. After days of delay they leave late. He refuses to stay in Jebus (Jerusalem) because it is foreign and goes on to <strong>Gibeah of Benjamin</strong>. No one takes them in except an old man, himself from Ephraim.</p>
+    <p>Men of the city surround the house demanding the Levite, almost word for word what the men of Sodom said (Gen 19:4–8). The Levite throws his concubine outside. She is abused all night and collapses at the door. In the morning he says, “Up, and let us be going.” She does not answer. He takes her home, cuts her body into 12 pieces, and sends them throughout Israel. The people say nothing like this has happened since the Exodus.</p>
+    <h4>Look for</h4>
+    <ul><li>Israel has become Sodom. The Canaanites are now inside Israel.</li><li>Bethlehem (David’s town) and Gibeah (Saul’s town, 1 Sam 10:26) are both mentioned. See Themes.</li><li>The Levite should have been a spiritual leader. His coldness is shocking.</li></ul>
+    <ol class="qs"><li>Why would Scripture record something so horrifying?</li><li>Where do you see the failure of men to protect the vulnerable in this story?</li></ol>
+    <label class="notelabel" for="n-ch19">My notes</label><textarea class="note" id="n-ch19" data-key="ch19"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch20"><summary><span class="n">20</span><span class="t">Civil war against Benjamin</span><span class="chev">›</span></summary><div class="body">
+    <p>Israel gathers at Mizpah, <strong>400,000</strong> swordsmen, “as one man.” The Levite gives a self-serving account that leaves out his own part. Benjamin refuses to surrender the guilty men of Gibeah and musters 26,000 plus 700 slingers who “could sling stones at an hair breadth, and not miss.” These 700 are left-handed, like Ehud.</p>
+    <p>Israel asks God who should go first: “Judah” (20:18, echoing 1:2). Israel loses 22,000 the first day and 18,000 the second. Only after weeping, fasting, and offerings at Bethel, where the ark is and <strong>Phinehas</strong> serves, does God promise victory. An ambush like the one at Ai (Josh 8) destroys Benjamin: 25,000 die and only 600 survive at the rock of Rimmon. Israel burns Benjamin’s towns.</p>
+    <ol class="qs"><li>Why might God allow Israel to lose twice even though its cause was just?</li><li>Joshua’s tactics are now used against a brother tribe. What’s the irony?</li></ol>
+    <label class="notelabel" for="n-ch20">My notes</label><textarea class="note" id="n-ch20" data-key="ch20"></textarea>
+  </div></details>
+
+  <details class="ch" id="ch21"><summary><span class="n">21</span><span class="t">Wives for Benjamin, and the final verdict</span><span class="chev">›</span></summary><div class="body">
+    <p>Israel had sworn not to give its daughters to Benjamin. Now they weep: “why is this come to pass… that there should be to day one tribe lacking?” As if it just <em>happened</em> to them. Their solution: destroy <strong>Jabesh-gilead</strong> for not joining the war and give its 400 virgins to Benjamin. For the remaining 200, they tell the Benjaminites to hide in the vineyards at the yearly feast at <strong>Shiloh</strong> and seize girls who come out to dance. That way the fathers technically did not “give” them.</p>
+    <p>The book ends: “In those days there was no king in Israel: every man did that which was right in his own eyes” (21:25).</p>
+    <p class="muted">Note: Jabesh-gilead’s bond with Benjamin shows up later. Saul, a Benjamite from Gibeah, rescues Jabesh-gilead (1 Sam 11), and its men risk their lives to bury him (1 Sam 31:11–13).</p>
+    <ol class="qs"><li>Israel keeps a rash oath by committing more violence. How does this mirror Jephthah?</li><li>Is the last verse only a call for a king, or for something deeper?</li></ol>
+    <label class="notelabel" for="n-ch21">My notes</label><textarea class="note" id="n-ch21" data-key="ch21"></textarea>
+  </div></details>
+</section>
+
+<!-- 10 THEMES -->
+<section class="block" id="themes">
+  <h2>10. Major themes</h2>
+  <div class="grid">
+    <div class="card"><h4>1. The Canaanization of Israel</h4><p>Israel failed to drive out the Canaanites, and the Canaanites’ ways moved into Israel: idols, child sacrifice (Jephthah), and Sodom-like violence (Gibeah). What they tolerate, they become.</p></div>
+    <div class="card"><h4>2. God’s persistent grace</h4><p>Again and again God rescues people who do not deserve it. He is moved by their misery (2:18; 10:16). The book is about Israel’s faithlessness, but even more about God’s faithfulness.</p></div>
+    <div class="card"><h4>3. Covenant consequences</h4><p>Oppression is not random. It is the covenant curse Moses warned about (Deut 28). God “sells” Israel to enemies to discipline, not destroy.</p></div>
+    <div class="card"><h4>4. Leadership &amp; kingship</h4><p>Gideon refuses a crown, Abimelech grabs one, and Jotham mocks power seekers. The refrain calls for a king, but the king needs to be <em>godly</em> (see Deut 17:14–20). Ultimately it points to the true King.</p></div>
+    <div class="card"><h4>5. Judah and Bethlehem vs. Benjamin and Gibeah</h4><p>Judah goes first (1:2; 20:18). Othniel of Judah is the ideal judge. Gibeah (Saul’s hometown) becomes Sodom. Bethlehem (David’s hometown) appears in both epilogue stories. Many scholars read this as quietly preparing for David’s line over Saul’s.</p></div>
+    <div class="card"><h4>6. The Spirit of the LORD</h4><p>The Spirit comes on Othniel (3:10), Gideon (6:34), Jephthah (11:29), and Samson (13:25; 14:6, 19; 15:14). That gives power for a task, but does not guarantee character. Gifting is not godliness.</p></div>
+    <div class="card"><h4>7. God uses weak instruments</h4><p>A left hand, an ox goad, a woman, a tent peg, the least of the clan, a barley loaf, 300 men, clay jars, a millstone, the son of a prostitute, a donkey’s jawbone. “Not by might” (compare 1 Cor 1:27).</p></div>
+    <div class="card"><h4>8. Right in whose eyes?</h4><p>Israel “did evil in the sight [eyes] of the LORD” (2:11), and at the end “every man did that which was right in his own eyes” (21:25). Samson: “she is right in my eyes” (14:3). The book asks whose eyes decide what is right.</p></div>
+  </div>
+</section>
+
+<!-- 11 HARD PASSAGES -->
+<section class="block" id="hard">
+  <h2>11. Hard passages</h2>
+  <p class="sub">Questions your class is likely to raise, with the main views.</p>
+
+  <h3>Descriptive, not prescriptive</h3>
+  <p>The most important principle for reading Judges: <strong>the Bible records many things it does not approve.</strong> The narrator often lets actions speak without commenting, then delivers a verdict through the refrain (21:25) and through consequences. Not every act by a “hero” is held up as an example.</p>
+
+  <h3>Did Jephthah really sacrifice his daughter? (11:30–40)</h3>
+  <ul>
+    <li><strong>Literal sacrifice:</strong> the plain reading. He vowed a “burnt offering” (<em>olah</em>) and “did with her according to his vow.” This was the view of most ancient Jewish and early Christian interpreters (e.g., Josephus, <em>Antiquities</em> 5.7.10). It fits the book’s theme of Israel adopting Canaanite practices, which God condemns (Deut 12:31; 18:10).</li>
+    <li><strong>Perpetual virginity / dedication:</strong> proposed by some medieval interpreters (e.g., Rabbi David Kimchi). The focus on her mourning her <em>virginity</em> and the note “she knew no man” (11:39) suggest she was devoted to lifelong service instead. The Hebrew connective in 11:31 can be read “or” (“shall be the LORD’s, <em>or</em> I will offer it”).</li>
+    <li>Either way, the vow was rash and unnecessary, and Scripture does not praise it.</li>
+  </ul>
+
+  <h3>Why does Hebrews 11 praise Gideon, Barak, Samson, and Jephthah?</h3>
+  <p>Hebrews commends the moments of real faith: Gideon attacking with 300, Barak marching against chariots, Jephthah trusting God against Ammon, Samson’s final prayer. It does not endorse their failures. It shows that God works through flawed faith, which is encouraging for all of us.</p>
+
+  <h3>Jael and Ehud: deception and killing</h3>
+  <p>These are wartime acts against oppressors in an ancient Near Eastern context. The song praises Jael (5:24) for her role in God’s deliverance, not necessarily every method. Readers have long debated whether praising the outcome means approving the means.</p>
+
+  <h3>“God sent an evil spirit” (9:23)</h3>
+  <p>Compare 1 Sam 16:14 and 1 Kgs 22:19–23. Hebrew narrative describes God as sovereign over all things, including judgment on the wicked. Here God lets the sins of Abimelech and Shechem turn on each other, which is <em>justice</em> (9:24, 56–57).</p>
+
+  <h3>“It was of the LORD” (14:4)</h3>
+  <p>God’s sovereignty works <em>through</em> Samson’s selfish choices without approving them. Compare Joseph: “ye thought evil against me; but God meant it unto good” (Gen 50:20).</p>
+
+  <h3>The violence of chapters 19–21</h3>
+  <p>The author presents these chapters as the <em>worst-case outcome</em> of a nation without God’s rule. The horror is the point. The book wants readers to be appalled and to long for righteous leadership.</p>
+</section>
+
+<!-- 12 TERMS -->
+<section class="block" id="terms">
+  <h2>12. Key terms</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td><strong>Shophet</strong></td><td>“Judge”: a leader who brings justice and deliverance.</td></tr>
+    <tr><td><strong>Angel of the LORD</strong></td><td>A messenger who speaks as God himself (2:1–3; 6:11–24; 13:3–23). Many Christian interpreters see a pre-incarnate appearance of Christ. Others see a special envoy. Both views are held.</td></tr>
+    <tr><td><strong>Baal / Baalim</strong></td><td>Canaanite storm and fertility god (“lord/master”). The plural refers to local forms, e.g., Baal-berith (8:33).</td></tr>
+    <tr><td><strong>Asherah / Ashtaroth</strong></td><td>Canaanite goddesses. An “Asherah” (KJV “grove”) was also a wooden cult pole (6:25).</td></tr>
+    <tr><td><strong>Dagon</strong></td><td>Chief god of the Philistines at Gaza and Ashdod (16:23; 1 Sam 5). He was actually an older Semitic grain god the Philistines adopted.</td></tr>
+    <tr><td><strong>Ephod</strong></td><td>A priestly garment, sometimes used to seek God’s will. In Judges it becomes an object of idolatry (8:27; 17:5).</td></tr>
+    <tr><td><strong>Teraphim</strong></td><td>Household idols (17:5; 18:14; compare Gen 31:19).</td></tr>
+    <tr><td><strong>Nazirite</strong></td><td>“Separated one” under a vow (Num 6): no wine or grape products, no contact with corpses, no razor.</td></tr>
+    <tr><td><strong>Spirit of the LORD “came upon”</strong></td><td>Temporary empowerment for a task, literally “clothed” (6:34) or “rushed upon” (14:6).</td></tr>
+    <tr><td><strong>Levite</strong></td><td>Member of the priestly tribe, which had no land and was supported by others. In chs. 17–21 two Levites embody spiritual decay.</td></tr>
+    <tr><td><strong>Shibboleth</strong></td><td>Hebrew for “ear of grain” or “flowing stream.” It became a password test (12:6).</td></tr>
+    <tr><td><strong>“Did evil in the sight of the LORD”</strong></td><td>The formula that starts each cycle.</td></tr>
+  </table></div>
+</section>
+
+<!-- 13 PLACES -->
+<section class="block" id="places">
+  <h2>13. Places &amp; peoples</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Place</th><th>Where</th><th>Event</th></tr>
+    <tr><td>Bochim</td><td>Near Bethel (uncertain)</td><td>Angel’s rebuke; Israel weeps (2:1–5)</td></tr>
+    <tr><td>Jericho, “city of palm trees”</td><td>Jordan valley</td><td>Eglon’s base (3:13)</td></tr>
+    <tr><td>Mount Tabor &amp; River Kishon</td><td>Jezreel Valley, Galilee</td><td>Barak defeats Sisera (4–5)</td></tr>
+    <tr><td>Ophrah</td><td>Manasseh (exact site uncertain)</td><td>Gideon’s home and ephod (6; 8:27)</td></tr>
+    <tr><td>Spring of Harod &amp; hill of Moreh</td><td>Foot of Mount Gilboa, Jezreel Valley</td><td>Gideon selects the 300 (7:1)</td></tr>
+    <tr><td>Shechem &amp; Mount Gerizim</td><td>Central hill country (Nablus)</td><td>Abimelech crowned; Jotham’s fable (9)</td></tr>
+    <tr><td>Gilead, Mizpah, Tob</td><td>East of the Jordan</td><td>Jephthah (11)</td></tr>
+    <tr><td>Zorah &amp; Eshtaol</td><td>Shephelah, west of Jerusalem</td><td>Samson’s birthplace and burial (13:2; 16:31)</td></tr>
+    <tr><td>Timnah (Tel Batash)</td><td>Sorek Valley</td><td>Samson’s wedding (14)</td></tr>
+    <tr><td>Gaza</td><td>Philistine coast</td><td>City gates; Dagon’s temple (16)</td></tr>
+    <tr><td>Laish → Dan (Tel Dan)</td><td>Far north, by the Jordan springs</td><td>Danite migration (18)</td></tr>
+    <tr><td>Gibeah (likely Tell el-Ful)</td><td>Benjamin, just north of Jerusalem</td><td>Outrage and war (19–20)</td></tr>
+    <tr><td>Bethel</td><td>North of Jerusalem</td><td>Ark present; Israel inquires of God (20:26–28)</td></tr>
+    <tr><td>Shiloh (Khirbet Seilun)</td><td>Ephraim</td><td>Tabernacle; the dancing daughters (18:31; 21:19–23)</td></tr>
+    <tr><td>Jabesh-gilead</td><td>East of the Jordan</td><td>Destroyed; 400 women taken (21)</td></tr>
+  </table></div>
+</section>
+
+<!-- 14 CHRIST -->
+<section class="block" id="christ">
+  <h2>14. Judges &amp; the whole Bible</h2>
+  <h3>Where Judges shows up later in Scripture</h3>
+  <ul>
+    <li><strong>1 Samuel 12:9–11</strong>: Samuel recalls Sisera, the Philistines, Moab, Jerubbaal, and Jephthah.</li>
+    <li><strong>Psalm 83:9–11</strong>: “Do unto them as unto the Midianites; as to Sisera… Oreb… Zeeb… Zebah… Zalmunna.”</li>
+    <li><strong>Isaiah 9:4; 10:26</strong>: “as in the day of Midian,” God’s future deliverance modeled on Gideon.</li>
+    <li><strong>Hosea 9:9; 10:9</strong>: “as in the days of Gibeah,” the byword for Israel’s deepest corruption.</li>
+    <li><strong>Acts 13:20</strong>: Paul’s sermon summarizes the era.</li>
+    <li><strong>Hebrews 11:32–34</strong>: Gideon, Barak, Samson, and Jephthah, “who through faith subdued kingdoms… out of weakness were made strong.”</li>
+  </ul>
+
+  <h3>How Judges points forward to Christ</h3>
+  <ul>
+    <li><strong>The need for a true King.</strong> The refrain asks for a king. Saul fails and David succeeds only partly. The prophets promise a righteous Son of David (Isa 9:6–7; Jer 23:5). The New Testament presents Jesus as that King.</li>
+    <li><strong>The perfect Judge-Deliverer.</strong> Each judge rescued Israel imperfectly and temporarily. The book leaves the reader waiting for a deliverer without flaws whose rescue lasts.</li>
+    <li><strong>Samson as a (broken) type.</strong> Announced birth to a barren woman. Set apart from the womb. Betrayed for silver. Handed over by his own people (Judah) to the Gentiles. Arms stretched out between two pillars. Wins his greatest victory in his death. The differences matter as much as the parallels: Samson died for revenge (16:28), and Christ died for his enemies.</li>
+    <li><strong>The Spirit-empowered leader.</strong> The judges had the Spirit temporarily. Jesus has the Spirit “without measure” (John 3:34; Isa 11:2) and gives him permanently to his people.</li>
+    <li><strong>The “Wonderful” name</strong> of the Angel of the LORD (13:18) and “Wonderful, Counsellor” (Isa 9:6) share the same Hebrew root.</li>
+  </ul>
+</section>
+
+<!-- 15 MEMORY -->
+<section class="block" id="memory">
+  <h2>15. Memory verses</h2>
+  <p class="sub">King James Version (public domain). Look them up in your preferred translation too.</p>
+  <blockquote class="v">“And also all that generation were gathered unto their fathers: and there arose another generation after them, which knew not the LORD, nor yet the works which he had done for Israel.”<cite>Judges 2:10</cite></blockquote>
+  <blockquote class="v">“And when the LORD raised them up judges, then the LORD was with the judge, and delivered them out of the hand of their enemies all the days of the judge: for it repented the LORD because of their groanings by reason of them that oppressed them and vexed them.”<cite>Judges 2:18</cite></blockquote>
+  <blockquote class="v">“And the angel of the LORD appeared unto him, and said unto him, The LORD is with thee, thou mighty man of valour.”<cite>Judges 6:12</cite></blockquote>
+  <blockquote class="v">“The people that are with thee are too many for me to give the Midianites into their hands, lest Israel vaunt themselves against me, saying, Mine own hand hath saved me.”<cite>Judges 7:2</cite></blockquote>
+  <blockquote class="v">“I will not rule over you, neither shall my son rule over you: the LORD shall rule over you.”<cite>Judges 8:23</cite></blockquote>
+  <blockquote class="v">“…And he wist not that the LORD was departed from him.”<cite>Judges 16:20</cite></blockquote>
+  <blockquote class="v">“In those days there was no king in Israel: every man did that which was right in his own eyes.”<cite>Judges 21:25</cite></blockquote>
+</section>
+
+<!-- 16 APPLICATION -->
+<section class="block" id="application">
+  <h2>16. Discussion &amp; application</h2>
+  <h3>Big-picture questions for the group</h3>
+  <ol>
+    <li>Judges 2:10: What are we doing to make sure the next generation “knows the LORD” and his works, not just stories about him?</li>
+    <li>What is our version of “doing what is right in our own eyes”? Where does our culture, or the church, run on personal preference instead of God’s word?</li>
+    <li>Why does crying out to God in pain not always mean real repentance? What does real repentance look like (compare 10:10–16)?</li>
+    <li>Several judges begin well and end badly (Gideon, Samson). What guards a believer against a bad finish?</li>
+    <li>The Spirit empowered people whose characters were deeply flawed. What is the difference between spiritual <em>gifting</em> and spiritual <em>maturity</em>?</li>
+    <li>What “Canaanites” (habits, idols, compromises) have we let stay because driving them out seemed too hard?</li>
+    <li>Where does God use weak things in your life so that he gets the credit?</li>
+    <li>How does the ending of Judges make you long for Christ as King?</li>
+  </ol>
+  <h3>Personal reflection</h3>
+  <ul>
+    <li>Which judge do I most resemble, and why?</li>
+    <li>Where am I “threshing in the winepress,” hiding, when God calls me a “mighty man of valour”?</li>
+    <li>Is there an “ephod” in my life, something good that has become a snare?</li>
+  </ul>
+  <label class="notelabel" for="n-general">My general notes</label><textarea class="note" id="n-general" data-key="general" style="min-height:140px"></textarea>
+</section>
+
+<!-- 17 SOURCES -->
+<section class="block" id="sources">
+  <h2>17. Sources &amp; further reading</h2>
+  <h3>Commentaries</h3>
+  <ul>
+    <li>Daniel I. Block, <em>Judges, Ruth</em> (New American Commentary, 1999). Detailed and evangelical.</li>
+    <li>Barry G. Webb, <em>The Book of Judges</em> (NICOT, 2012). Excellent on literary structure.</li>
+    <li>K. Lawson Younger Jr., <em>Judges, Ruth</em> (NIV Application Commentary, 2002). Strong on ancient Near Eastern background and application.</li>
+    <li>Dale Ralph Davis, <em>Judges: Such a Great Salvation</em> (Focus on the Bible). Readable and pastoral.</li>
+    <li>Timothy Keller, <em>Judges for You</em> (2013). Accessible, devotional, Christ-centered.</li>
+    <li>Robert G. Boling, <em>Judges</em> (Anchor Bible, 1975). Critical scholarship with archaeology.</li>
+  </ul>
+  <h3>History &amp; archaeology</h3>
+  <ul>
+    <li>Amihai Mazar, <em>Archaeology of the Land of the Bible, 10,000–586 B.C.E.</em> (1990).</li>
+    <li>Israel Finkelstein, <em>The Archaeology of the Israelite Settlement</em> (1988).</li>
+    <li>William G. Dever, <em>Who Were the Early Israelites and Where Did They Come From?</em> (2003).</li>
+    <li>Kenneth A. Kitchen, <em>On the Reliability of the Old Testament</em> (2003).</li>
+    <li>Eric H. Cline, <em>1177 B.C.: The Year Civilization Collapsed</em> (2014). The world around Judges.</li>
+    <li>Michal Feldman et al., “Ancient DNA sheds light on the genetic origins of early Iron Age Philistines,” <em>Science Advances</em> 5 (2019).</li>
+    <li>Lidar Sapir-Hen &amp; Erez Ben-Yosef, “The Introduction of Domestic Camels to the Southern Levant,” <em>Tel Aviv</em> 40 (2013).</li>
+  </ul>
+  <p class="muted">A note on accuracy: this guide separates what the text says, what outside evidence confirms, and what is still debated. Dates before c. 900 BC are approximate. Always read the chapters themselves first.</p>
+</section>
+
+</main>
+</div>
+
+<button class="iconbtn totop" onclick="window.scrollTo({top:0})" aria-label="Back to top">↑</button>
+<footer>Book of Judges Study Guide · Prepared for Bible study, 2026 · Scripture quotations from the King James Version (public domain)</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  // Theme
+  var saved = store('judges-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store('judges-theme', next);
+  });
+
+  // Mobile menu
+  var toc = document.getElementById('toc'), scrim = document.getElementById('scrim'), btn = document.getElementById('menuBtn');
+  function setMenu(open) { toc.classList.toggle('open', open); scrim.classList.toggle('show', open); btn.setAttribute('aria-expanded', open); }
+  btn.addEventListener('click', function () { setMenu(!toc.classList.contains('open')); });
+  scrim.addEventListener('click', function () { setMenu(false); });
+  toc.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  // Expand / collapse chapters
+  var chs = document.querySelectorAll('details.ch');
+  document.getElementById('expandAll').onclick = function () { chs.forEach(function (d) { d.open = true; }); };
+  document.getElementById('collapseAll').onclick = function () { chs.forEach(function (d) { d.open = false; }); };
+
+  // Notes (saved locally per device)
+  document.querySelectorAll('textarea.note').forEach(function (t) {
+    var key = 'judges-note-' + t.dataset.key;
+    t.value = store(key) || '';
+    t.addEventListener('input', function () { store(key, t.value); });
+  });
+
+  // Highlight current section in contents
+  var links = {};
+  toc.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.values(links).forEach(function (l) { l.classList.remove('active'); });
+          links[e.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('section.block').forEach(function (s) { io.observe(s); });
+  }
+
+  // Open a chapter if linked directly (#ch5)
+  if (location.hash && /^#ch\d+$/.test(location.hash)) { var d = document.querySelector(location.hash); if (d) d.open = true; }
+})();
+</script>
+</body>
+</html>
