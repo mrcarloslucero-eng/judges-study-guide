@@ -158,12 +158,13 @@ textarea.note {
 
 /* Cycle diagram */
 .diagram { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: center; }
-@media (min-width: 760px) { .diagram { grid-template-columns: 340px 1fr; } }
-.diagram svg { width: 100%; max-width: 340px; height: auto; margin: 0 auto; display: block; }
+@media (min-width: 760px) { .diagram { grid-template-columns: 380px 1fr; } }
+.diagram svg { width: 100%; max-width: 380px; height: auto; margin: 0 auto; display: block; }
 .svg-node { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
 .svg-label { fill: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 700; text-anchor: middle; }
 .svg-sub { fill: var(--muted); font-family: var(--sans); font-size: 10.5px; text-anchor: middle; }
 .svg-arc { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.svg-arrow { fill: var(--accent); }
 .svg-center { fill: var(--accent); font-family: var(--serif); font-size: 14px; font-weight: 700; text-anchor: middle; }
 
 /* Spiral */
@@ -390,21 +391,19 @@ footer { padding: 2rem 16px 3rem; color: var(--muted); font-size: .88rem; text-a
   <h2>7. The cycle &amp; the downward spiral</h2>
   <p class="sub">Judges 2:11–19 explains the pattern before the stories begin.</p>
   <div class="diagram">
-    <svg viewBox="0 0 340 340" role="img" aria-label="The cycle of Judges: Sin, Servitude, Supplication, Salvation, Silence">
-      <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--muted)"/></marker></defs>
-      <circle cx="170" cy="170" r="118" class="svg-arc" stroke-dasharray="3 5"/>
-      <path class="svg-arc" marker-end="url(#ah)" d="M210 66 A118 118 0 0 1 272 128"/>
-      <path class="svg-arc" marker-end="url(#ah)" d="M285 215 A118 118 0 0 1 238 272"/>
-      <path class="svg-arc" marker-end="url(#ah)" d="M140 285 A118 118 0 0 1 82 252"/>
-      <path class="svg-arc" marker-end="url(#ah)" d="M55 180 A118 118 0 0 1 68 108"/>
-      <path class="svg-arc" marker-end="url(#ah)" d="M100 76 A118 118 0 0 1 134 58"/>
-      <g><circle cx="170" cy="52" r="38" class="svg-node"/><text x="170" y="50" class="svg-label">SIN</text><text x="170" y="65" class="svg-sub">“did evil”</text></g>
-      <g><circle cx="282" cy="134" r="38" class="svg-node"/><text x="282" y="132" class="svg-label">SERVITUDE</text><text x="282" y="147" class="svg-sub">God “sold them”</text></g>
-      <g><circle cx="239" cy="266" r="38" class="svg-node"/><text x="239" y="264" class="svg-label">SUPPLICATION</text><text x="239" y="279" class="svg-sub">“cried unto”</text></g>
-      <g><circle cx="101" cy="266" r="38" class="svg-node"/><text x="101" y="264" class="svg-label">SALVATION</text><text x="101" y="279" class="svg-sub">God “raised up”</text></g>
-      <g><circle cx="58" cy="134" r="38" class="svg-node"/><text x="58" y="132" class="svg-label">SILENCE</text><text x="58" y="147" class="svg-sub">“land had rest”</text></g>
-      <text x="170" y="166" class="svg-center">…and it</text><text x="170" y="184" class="svg-center">gets worse</text>
-    </svg>
+    <svg viewBox="0 0 380 380" role="img" aria-label="The cycle of Judges: Sin, Servitude, Supplication, Salvation, Silence">
+      <circle cx="190" cy="190" r="130" class="svg-arc" stroke-dasharray="4 5"/>
+      <path d="M-6,-6 L6,0 L-6,6 z" class="svg-arrow" transform="translate(266.4,84.8) rotate(36)"/>
+      <path d="M-6,-6 L6,0 L-6,6 z" class="svg-arrow" transform="translate(313.6,230.2) rotate(108)"/>
+      <path d="M-6,-6 L6,0 L-6,6 z" class="svg-arrow" transform="translate(190,320) rotate(180)"/>
+      <path d="M-6,-6 L6,0 L-6,6 z" class="svg-arrow" transform="translate(66.4,230.2) rotate(252)"/>
+      <path d="M-6,-6 L6,0 L-6,6 z" class="svg-arrow" transform="translate(113.6,84.8) rotate(324)"/>
+      <g><rect x="134.0" y="35.0" width="112" height="50" rx="25" class="svg-node"/><text x="190" y="58.0" class="svg-label">SIN</text><text x="190" y="73.0" class="svg-sub">“did evil”</text></g>
+      <g><rect x="257.6" y="124.8" width="112" height="50" rx="25" class="svg-node"/><text x="313.6" y="147.8" class="svg-label">SERVITUDE</text><text x="313.6" y="162.8" class="svg-sub">God “sold them”</text></g>
+      <g><rect x="210.4" y="270.2" width="112" height="50" rx="25" class="svg-node"/><text x="266.4" y="293.2" class="svg-label">SUPPLICATION</text><text x="266.4" y="308.2" class="svg-sub">“cried unto”</text></g>
+      <g><rect x="57.6" y="270.2" width="112" height="50" rx="25" class="svg-node"/><text x="113.6" y="293.2" class="svg-label">SALVATION</text><text x="113.6" y="308.2" class="svg-sub">God “raised up”</text></g>
+      <g><rect x="10.4" y="124.8" width="112" height="50" rx="25" class="svg-node"/><text x="66.4" y="147.8" class="svg-label">SILENCE</text><text x="66.4" y="162.8" class="svg-sub">“land had rest”</text></g>
+      <text x="190" y="186" class="svg-center">…and it</text><text x="190" y="205" class="svg-center">gets worse</text></svg>
     <div>
       <ol>
         <li><strong>Sin:</strong> “The children of Israel did evil in the sight of the LORD” (2:11; 3:7, 12; 4:1; 6:1; 10:6; 13:1).</li>
